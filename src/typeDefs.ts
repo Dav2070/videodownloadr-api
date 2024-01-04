@@ -1,9 +1,14 @@
 export const typeDefs = `#graphql
 	type Query {
-		hello: Test
+		retrieveYoutubeVideoInfo(url: String!): YoutubeVideoInfo
+		downloadYoutubeVideo(url: String!): YoutubeDownloadResult
 	}
 
-	type Test {
-		test: String
+	type YoutubeVideoInfo {
+		url: String
+	}
+
+	type YoutubeDownloadResult {
+		url: String
 	}
 `
