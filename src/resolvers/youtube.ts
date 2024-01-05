@@ -7,7 +7,13 @@ export async function retrieveYoutubeVideoInfo(
 	args: { url: string },
 	context: ResolverContext
 ) {
-	let info = await ytdl.getBasicInfo(args.url)
+	const info = await ytdl.getBasicInfo(args.url)
+	const title = info.videoDetails.title
+	const channelName = info.videoDetails.author.name
+	let thumbnail = null
+
+	let thumbnails = info.videoDetails.thumbnails
+	if (thumbnails.length > 0) thumbnail = thumbnails[0].url
 
 	// Find the best format
 	let formats = info.formats.filter(
@@ -25,7 +31,10 @@ export async function retrieveYoutubeVideoInfo(
 	}
 
 	return {
-		url
+		title,
+		thumbnailUrl: thumbnail,
+		channelName,
+		videoUrl: url
 	}
 }
 

@@ -5,7 +5,10 @@ export const typeDefs = `#graphql
 	}
 
 	type YoutubeVideoInfo {
-		url: String
+		title: String
+		thumbnailUrl: String
+		channelName: String
+		videoUrl: String
 	}
 
 	type YoutubeDownloadResult {
